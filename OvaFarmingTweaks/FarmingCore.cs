@@ -1,7 +1,8 @@
 ﻿using MelonLoader;
 
-[assembly: MelonInfo(typeof(OvaFarmingAutomation.FarmingCore), "OvaFarmingTweaks", "0.1.0", "Cory")]
+[assembly: MelonInfo(typeof(OvaFarmingAutomation.FarmingCore), "OvaFarmingTweaks", "1.0.0", "Cory")]
 [assembly: MelonGame("Skinny Frog", "Ova Magica")]
+[assembly: MelonAdditionalDependencies("EggCore")]
 
 namespace OvaFarmingAutomation
 {

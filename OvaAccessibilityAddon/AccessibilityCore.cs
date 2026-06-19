@@ -2,8 +2,9 @@
 using Il2CppOvaMagica;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(OvaAccessibilityAddon.AccessibilityCore), "OvaAccessibilityAddon", "0.1.0", "Cory")]
+[assembly: MelonInfo(typeof(OvaAccessibilityAddon.AccessibilityCore), "OvaAccessibilityAddon", "1.0.0", "Cory")]
 [assembly: MelonGame("Skinny Frog", "Ova Magica")]
+[assembly: MelonAdditionalDependencies("EggCore")]
 
 namespace OvaAccessibilityAddon
 {

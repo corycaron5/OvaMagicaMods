@@ -21,7 +21,9 @@ public class LifePatches
         private static void Postfix(UIBuildingStoreButton __instance, ref Building building, ref BuildingData buildingData)
         {
             if(UIBuilingStore.current.isShown == null || !Melon<LifeCore>.Instance.EnableBuildingFromMagicStorage.Value) return;
+            string title = __instance.text.text;
             EggCore.EggCore.DebugMessage(LifeCore.MelonId,"Building Key: " + building.key);
+            EggCore.EggCore.DebugMessage(LifeCore.MelonId,"Building Title: " + title);
             if (!buildingData.isUnlocked || buildingData.isBuild)
             {
                 EggCore.EggCore.DebugMessage(LifeCore.MelonId,"Unlocked: " + buildingData.isUnlocked);
@@ -33,9 +35,9 @@ public class LifePatches
             {
                 int inventoryCount = InventoryUtil.GetItemCountInInventory(item.item.key);
                 int magicCount = InventoryUtil.GetItemCount(item.item.key, GameData.current.inventoryData.magicChestData);
-                EggCore.EggCore.DebugMessage(LifeCore.MelonId,"Item Required " + i + ": " + item.item.key);
-                EggCore.EggCore.DebugMessage(LifeCore.MelonId,"Amount Required " + i + ": " + item.amount);
-                EggCore.EggCore.DebugMessage(LifeCore.MelonId,"Amount Found " + i + ": " + (inventoryCount + magicCount));
+                EggCore.EggCore.DebugMessage(LifeCore.MelonId," Item Required " + i + ": " + item.item.key);
+                EggCore.EggCore.DebugMessage(LifeCore.MelonId," Amount Required " + i + ": " + item.amount);
+                EggCore.EggCore.DebugMessage(LifeCore.MelonId," Amount Found " + i + ": " + (inventoryCount + magicCount));
                 if (item.amount > inventoryCount + magicCount)
                 {
                     return;
@@ -43,10 +45,11 @@ public class LifePatches
                 i++;
             }
             __instance.canBuild = true;
-            _buildingKey = building.key;
+            EggCore.EggCore.DebugMessage(LifeCore.MelonId,"Building added: " + buildingMap.TryAdd(title, building.key));
         }
     }
-    
+
+    private static readonly Dictionary<string, string> buildingMap = new();
     private static string _buildingKey = "";
     
     /// <summary>
@@ -59,8 +62,10 @@ public class LifePatches
         private static bool Prefix()
         {
             if(UIBuilingStore.current.isShown == null || !Melon<LifeCore>.Instance.EnableBuildingFromMagicStorage.Value) return true;
+            buildingMap.TryGetValue(UIBuilingStore.current.buildingTitle.text, out _buildingKey);
             EggCore.EggCore.InfoMessage(LifeCore.MelonId,"Rerouting Remove Items to use Magic Storage.");
             EggCore.EggCore.InfoMessage(LifeCore.MelonId,"Building Title: " + UIBuilingStore.current.buildingTitle.text);
+            EggCore.EggCore.InfoMessage(LifeCore.MelonId,"Building Key: " + _buildingKey);
             Building building = EggGameplayUtils.GetBuilding(_buildingKey);
             if (building == null)
             {
@@ -68,6 +73,14 @@ public class LifePatches
                 return true;
             }
             InventoryUtil.RemoveAndAddItemsFromInventoryOrMagicChest(building.requiredItems);
+            foreach (var item in building.requiredItems)
+            {
+                if (item.item.key == "MoneyCoin")
+                {
+                    GameData.current.inventoryData.money -=item.amount;
+                    break;
+                }
+            }
             return false;
         }
     }

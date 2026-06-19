@@ -2,8 +2,9 @@
 using MelonLoader;
 using OvaLifeQuality.Actions;
 
-[assembly: MelonInfo(typeof(OvaLifeQuality.LifeCore), "OvaLifeQuality", "0.1.0", "Cory")]
+[assembly: MelonInfo(typeof(OvaLifeQuality.LifeCore), "OvaLifeQuality", "1.0.1", "Cory", "https://www.nexusmods.com/ovamagica/mods/5")]
 [assembly: MelonGame("Skinny Frog", "Ova Magica")]
+[assembly: MelonAdditionalDependencies("EggCore")]
 
 namespace OvaLifeQuality
 {

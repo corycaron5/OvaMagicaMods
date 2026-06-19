@@ -8,7 +8,7 @@ using MelonLoader.Utils;
 using UnityEngine;
 using Tomlet;
 
-[assembly: MelonInfo(typeof(EggCore.EggCore), "EggCore", "0.1.0", "Cory")]
+[assembly: MelonInfo(typeof(EggCore.EggCore), "EggCore", "1.0.0", "Cory")]
 [assembly: MelonGame("Skinny Frog", "Ova Magica")]
 [assembly: MelonPriority(-100)]//Ensure the core mod is loaded first
 
@@ -51,8 +51,8 @@ namespace EggCore
             LoggerLevel = GeneralCategory.CreateEntry("Logger Level", 2);
             EggLogger.Level = EggLogger.GetLogLevel(LoggerLevel.Value);
 
-            InputActionsCategory.CreateEntry("Example Entry", "ReloadConfigs");
-            RepeatingInputActionsCategory.CreateEntry("Example Entry", "");
+            InputActionsCategory.CreateEntry("ExampleEntry", "ReloadConfigs");
+            RepeatingInputActionsCategory.CreateEntry("ExampleEntry", "");
             
             /*ConsoleKey = GeneralCategory.CreateEntry("Console Key", KeyCode.Tilde); //TODO
             DebugInfoKey = GeneralCategory.CreateEntry("Debug Info Key", KeyCode.F10);
@@ -416,28 +416,56 @@ namespace EggCore
         private static void CheckGameLogicInputFixed()
         {
             DebugMessage("Checking Fixed Player Actions");
-            foreach (var input in GameLogic.PlayerInput.actions)
+            if (GameLogic.PlayerInput is not null)
             {
-                if(input.IsPressed) DebugMessage("Key is pressed: " + input.Name);
+                foreach (var input in GameLogic.PlayerInput.actions)
+                {
+                    if (input.IsPressed) DebugMessage("Key is pressed: " + input.Name);
+                }
+            }
+            else
+            {
+                DebugMessage("Player Input is null");
             }
             DebugMessage("Checking Fixed UI Actions");
-            foreach (var input in GameLogic.UiInput.actions)
+            if (GameLogic.UiInput is not null)
             {
-                if(input.IsPressed) DebugMessage("Key is pressed: " + input.Name);
+                foreach (var input in GameLogic.UiInput.actions)
+                {
+                    if (input.IsPressed) DebugMessage("Key is pressed: " + input.Name);
+                }
+            }
+            else
+            {
+                DebugMessage("UI Input is null");
             }
         }
 
         private static void CheckGameLogicInput()
         {
             DebugMessage("Checking Player Actions");
-            foreach (var input in GameLogic.PlayerInput.actions)
+            if (GameLogic.PlayerInput is not null)
             {
-                if(input.WasPressed) DebugMessage("Key was pressed: " + input.Name);
+                foreach (var input in GameLogic.PlayerInput.actions)
+                {
+                    if(input.WasPressed) DebugMessage("Key was pressed: " + input.Name);
+                }
+            }
+            else
+            {
+                DebugMessage("Player Input is null");
             }
             DebugMessage("Checking UI Actions");
-            foreach (var input in GameLogic.UiInput.actions)
+            if (GameLogic.UiInput is not null)
             {
-                if(input.WasPressed) DebugMessage("Key was pressed: " + input.Name);
+                foreach (var input in GameLogic.UiInput.actions)
+                {
+                    if(input.WasPressed) DebugMessage("Key was pressed: " + input.Name);
+                }
+            }
+            else
+            {
+                DebugMessage("UI Input is null");
             }
         }
 

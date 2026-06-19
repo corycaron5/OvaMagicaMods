@@ -7,8 +7,9 @@ using Random = UnityEngine.Random;
 
 // ReSharper disable InconsistentNaming
 
-[assembly: MelonInfo(typeof(OvaCombatTweaks.CombatCore), "OvaCombatTweaks", "0.1.0", "Cory")]
+[assembly: MelonInfo(typeof(OvaCombatTweaks.CombatCore), "OvaCombatTweaks", "1.0.0", "Cory")]
 [assembly: MelonGame("Skinny Frog", "Ova Magica")]
+[assembly: MelonAdditionalDependencies("EggCore")]
 
 namespace OvaCombatTweaks
 {
