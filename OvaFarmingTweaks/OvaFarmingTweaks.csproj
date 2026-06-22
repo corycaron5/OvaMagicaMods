@@ -373,6 +373,7 @@
 
 	<ItemGroup>
 		<Compile Include="Actions\ClearDeadPlantsAction.cs" />
+		<Compile Include="Actions\CollectAllForageablesAction.cs" />
 		<Compile Include="Actions\FertilizeGroundAction.cs" />
 		<Compile Include="Actions\HarvestGroundAction.cs" />
 		<Compile Include="Actions\PlantSeedAction.cs" />

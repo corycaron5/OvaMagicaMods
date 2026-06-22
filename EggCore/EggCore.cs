@@ -8,7 +8,7 @@ using MelonLoader.Utils;
 using UnityEngine;
 using Tomlet;
 
-[assembly: MelonInfo(typeof(EggCore.EggCore), "EggCore", "1.0.0", "Cory")]
+[assembly: MelonInfo(typeof(EggCore.EggCore), "EggCore", "1.1.0", "Cory")]
 [assembly: MelonGame("Skinny Frog", "Ova Magica")]
 [assembly: MelonPriority(-100)]//Ensure the core mod is loaded first
 
@@ -92,7 +92,7 @@ namespace EggCore
                         if (action != null)
                         {
                             acts.Add(action);
-                            InfoMessage("Registered input action: " + script);
+                            InfoMessage("Registered input action to " + key + ": " + script);
                         }
                         else DebugMessage("Failed to create action: " + script);
                     }

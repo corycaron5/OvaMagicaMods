@@ -1,4 +1,7 @@
 // ReSharper disable InconsistentNaming
+
+using OvaLifeQuality.Actions;
+
 namespace OvaLifeQuality;
 
 using EggCore.Utils;
@@ -222,6 +225,16 @@ public class LifePatches
         private static void Postfix()
         {
             Melon<LifeCore>.Instance.AddFallingStarDays();
+        }
+    }
+
+    [HarmonyPatch(typeof(SettingsDataNew), "ReadPlayerPrefsAndUnchangeableConsoleSettings")]
+    private static class SettingsOverridePatch
+    {
+        // ReSharper disable once UnusedMember.Local
+        private static void Postfix()
+        {
+            new SettingsOverrideAction("SettingsOverride").Execute();
         }
     }
 

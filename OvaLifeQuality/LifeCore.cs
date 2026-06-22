@@ -2,7 +2,7 @@
 using MelonLoader;
 using OvaLifeQuality.Actions;
 
-[assembly: MelonInfo(typeof(OvaLifeQuality.LifeCore), "OvaLifeQuality", "1.0.1", "Cory", "https://www.nexusmods.com/ovamagica/mods/5")]
+[assembly: MelonInfo(typeof(OvaLifeQuality.LifeCore), "OvaLifeQuality", "1.1.0", "Cory", "https://www.nexusmods.com/ovamagica/mods/5")]
 [assembly: MelonGame("Skinny Frog", "Ova Magica")]
 [assembly: MelonAdditionalDependencies("EggCore")]
 
@@ -40,6 +40,7 @@ namespace OvaLifeQuality
         public MelonPreferences_Entry<float> DialogTextSpeed;
 
         public MelonPreferences_Entry<string> FallingStarDays;
+        public MelonPreferences_Entry<int> DayLength;
         
         public MelonPreferences_Entry<float> MinFishWaitTime;
         public MelonPreferences_Entry<float> MaxFishWaitTime;
@@ -53,8 +54,6 @@ namespace OvaLifeQuality
             LifeCategory = MelonPreferences.CreateCategory("LifeQuality");
             LifeCategory.SetFilePath(EggCore.EggCore.ConfigPath);
             
-            //MoveToMagicKey = LifeCategory.CreateEntry("Move to Magic Storage Key", KeyCode.F8);
-            //PauseKey = LifeCategory.CreateEntry("Pause Key", KeyCode.F9);
             EnableBuildingFromMagicStorage = LifeCategory.CreateEntry("Enable Building From Magic Storage", false);
             AutoCollect = LifeCategory.CreateEntry("Auto Collect", false);
             
@@ -80,6 +79,7 @@ namespace OvaLifeQuality
             DialogTextSpeed = LifeCategory.CreateEntry("Dialog Text Speed Percent", 1f);
             
             FallingStarDays = LifeCategory.CreateEntry("Falling Star Days", "0:1,9,Solis:17,1:1,Ceres:17,Frigus:1,2:17");
+            DayLength = LifeCategory.CreateEntry("Day Length Override", 0);
             
             FishBattleChance = LifeCategory.CreateEntry("Fish Battle Chance", 0.33f); //Default: 0.33
             MinFishWaitTime = LifeCategory.CreateEntry("Min Fish Wait Time", 1f); //Default: 1
@@ -95,6 +95,7 @@ namespace OvaLifeQuality
             EggCore.EggCore.RegisterLogger(MelonId);
             EggCore.EggCore.RegisterCategory(LifeCategory);
             EggCore.EggCore.RegisterOnReload(new TextSpeedAction("TextSpeed"));
+            EggCore.EggCore.RegisterOnReload(new SettingsOverrideAction("SettingsOverride"));
             EggCore.EggCore.RegisterOnReload(new AddFallingStarAction("FallingStars"));
             
             RegisterInternalActions();

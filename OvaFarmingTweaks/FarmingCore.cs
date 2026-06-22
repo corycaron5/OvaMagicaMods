@@ -1,6 +1,6 @@
 ﻿using MelonLoader;
 
-[assembly: MelonInfo(typeof(OvaFarmingAutomation.FarmingCore), "OvaFarmingTweaks", "1.0.0", "Cory")]
+[assembly: MelonInfo(typeof(OvaFarmingAutomation.FarmingCore), "OvaFarmingTweaks", "1.1.0", "Cory")]
 [assembly: MelonGame("Skinny Frog", "Ova Magica")]
 [assembly: MelonAdditionalDependencies("EggCore")]
 
@@ -11,13 +11,6 @@ namespace OvaFarmingAutomation
         internal const string MelonId = "OvaFarmingTweaks";
         
         public MelonPreferences_Category FarmingCategory;
-        
-        /*public MelonPreferences_Entry<KeyCode> TillSoilKey;
-        public MelonPreferences_Entry<KeyCode> WaterCropsKey;
-        public MelonPreferences_Entry<KeyCode> PlantSeedsKey;
-        public MelonPreferences_Entry<KeyCode> FertCropsKey;
-        public MelonPreferences_Entry<KeyCode> HarvestCropsKey;
-        public MelonPreferences_Entry<KeyCode> VacuumKey;*/
         
         public MelonPreferences_Entry<float> VacuumDistance;
         public MelonPreferences_Entry<float> VacuumSpeed;

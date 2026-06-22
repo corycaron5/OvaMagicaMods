@@ -377,6 +377,7 @@
 		<Compile Include="Actions\OpenFastTravelAction.cs" />
 		<Compile Include="Actions\PauseTimeAction.cs" />
 		<Compile Include="Actions\QualifyCloverCupAction.cs" />
+		<Compile Include="Actions\SettingsOverrideAction.cs" />
 		<Compile Include="Actions\TextSpeedAction.cs" />
 		<Compile Include="LifeCore.cs" />
 		<Compile Include="LifePatches.cs" />

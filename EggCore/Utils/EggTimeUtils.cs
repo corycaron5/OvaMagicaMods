@@ -212,4 +212,9 @@ public static class EggTimeUtils
                 return false;
         }
     }
+    
+    public static void SetDayLength(int dayLength)
+    {
+        SettingsDataNew.instance.dayLength = dayLength;
+    }
 }

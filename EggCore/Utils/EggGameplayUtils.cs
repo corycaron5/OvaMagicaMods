@@ -70,6 +70,11 @@ public static class EggGameplayUtils
     {
         return Il2CppUtils.ConvertToSystemList(Object.FindObjectsByType<ResourceBehaviour>(FindObjectsSortMode.None));
     }
+
+    public static List<CollectTriggerBehaviour> GetForageables()
+    {
+        return Il2CppUtils.ConvertToSystemList(Object.FindObjectsByType<CollectTriggerBehaviour>(FindObjectsSortMode.None));
+    }
     
     public static Building GetBuilding(string key)
     {
