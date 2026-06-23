@@ -438,7 +438,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Compile Include="Actions\ActivateCheatsAction.cs" />
+		<Compile Include="Actions\OpenCheatConsole.cs" />
 		<Compile Include="CheatCore.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\EggCore\EggCore.csproj" />
 	</ItemGroup>
 	
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">

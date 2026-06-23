@@ -374,7 +374,6 @@
 	<ItemGroup>
 		<Compile Include="Actions\DebugAction.cs" />
 		<Compile Include="Actions\IncreaseAllBlobStats.cs" />
-		<Compile Include="Actions\OpenCheatConsole.cs" />
 		<Compile Include="Actions\ReloadConfigs.cs" />
 		<Compile Include="Actions\RevealDungeonMap.cs" />
 		<Compile Include="Actions\SaveConfigs.cs" />
