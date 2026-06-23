@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OvaCombatTweaks", "OvaComba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OvaFarmingTweaks", "OvaFarmingTweaks\OvaFarmingTweaks.csproj", "{64B829C6-3A03-45C8-82AD-5BC4F2D063A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OvaCheatTool", "OvaCheatTool\OvaCheatTool.csproj", "{1A1807BB-53D9-4CCA-A925-2DD0D47D9F01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{64B829C6-3A03-45C8-82AD-5BC4F2D063A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64B829C6-3A03-45C8-82AD-5BC4F2D063A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64B829C6-3A03-45C8-82AD-5BC4F2D063A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A1807BB-53D9-4CCA-A925-2DD0D47D9F01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A1807BB-53D9-4CCA-A925-2DD0D47D9F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A1807BB-53D9-4CCA-A925-2DD0D47D9F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A1807BB-53D9-4CCA-A925-2DD0D47D9F01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
