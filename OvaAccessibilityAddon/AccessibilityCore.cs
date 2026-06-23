@@ -2,7 +2,7 @@
 using Il2CppOvaMagica;
 using MelonLoader;
 
-[assembly: MelonInfo(typeof(OvaAccessibilityAddon.AccessibilityCore), "OvaAccessibilityAddon", "1.0.0", "Cory")]
+[assembly: MelonInfo(typeof(OvaAccessibilityAddon.AccessibilityCore), "OvaAccessibilityAddon", "1.1.0", "Cory")]
 [assembly: MelonGame("Skinny Frog", "Ova Magica")]
 [assembly: MelonAdditionalDependencies("EggCore")]
 
@@ -15,9 +15,14 @@ namespace OvaAccessibilityAddon
         
         public MelonPreferences_Category AccessibilityCategory;
         
-        public MelonPreferences_Entry<bool> SkipMinigames;
         public MelonPreferences_Entry<bool> MuteOnFocusLoss;
         public MelonPreferences_Entry<bool> PauseOnFocusLoss;
+        //public MelonPreferences_Entry<bool> SkipMinigames;
+        public MelonPreferences_Entry<bool> SkipBasketball;
+        public MelonPreferences_Entry<bool> SkipTennis;
+        public MelonPreferences_Entry<bool> SkipStrength;
+        public MelonPreferences_Entry<bool> SkipRingGame;
+        //public MelonPreferences_Entry<bool> SkipMaze;
         
         private AudioMuterPatch _muter;
         private GamePauserPatch _pauser;
@@ -27,9 +32,14 @@ namespace OvaAccessibilityAddon
             AccessibilityCategory = MelonPreferences.CreateCategory("Accessibility");
             AccessibilityCategory.SetFilePath(EggCore.EggCore.ConfigPath);
             
-            SkipMinigames = AccessibilityCategory.CreateEntry("Skip Minigames", false);
             MuteOnFocusLoss = AccessibilityCategory.CreateEntry("Mute on Focus Loss", false);
             PauseOnFocusLoss = AccessibilityCategory.CreateEntry("Pause on Focus Loss", false);
+            //SkipMinigames = AccessibilityCategory.CreateEntry("Skip Minigames", false);
+            SkipBasketball = AccessibilityCategory.CreateEntry("Skip Minigame - Basketball", false);
+            SkipTennis = AccessibilityCategory.CreateEntry("Skip Minigame - Tennis_Badminton", false);
+            SkipStrength = AccessibilityCategory.CreateEntry("Skip Minigame - Strength Test", false);
+            SkipRingGame = AccessibilityCategory.CreateEntry("Skip Minigame - Stacking Rings", false);
+            //SkipMaze = AccessibilityCategory.CreateEntry("Skip Minigame - Ball Maze", false);
             
             LoggerInstance.Msg("Ova Accessibility Module Initialized.");
 
@@ -110,6 +120,7 @@ namespace OvaAccessibilityAddon
             }
         }
         
+        /*
         /// <summary>
         /// Harmony patch to skip minigames.
         /// </summary>
@@ -124,6 +135,87 @@ namespace OvaAccessibilityAddon
                 __instance.success = true;
                 __instance.isFinished = true;
             }
+        }*/
+
+        /// <summary>
+        /// Harmony patch to skip basketball minigame.
+        /// </summary>
+        [HarmonyPatch(typeof(BlobGameBasketball),"Init", new Type[] { typeof(BlobGameSceneLogic) })]
+        private static class BasketballSkip
+        {
+            // ReSharper disable once InconsistentNaming
+            // ReSharper disable once UnusedMember.Local
+            private static void Postfix(BlobGameBasketball __instance)
+            {
+                if (!Melon<AccessibilityCore>.Instance.SkipBasketball.Value) return;
+                __instance.success = true;
+                __instance.isFinished = true;
+            }
         }
+
+        /// <summary>
+        /// Harmony patch to skip tennis minigame.
+        /// </summary>
+        [HarmonyPatch(typeof(BlobGameTennis),"Init", new Type[] { typeof(BlobGameSceneLogic) })]
+        private static class TennisSkip
+        {
+            // ReSharper disable once InconsistentNaming
+            // ReSharper disable once UnusedMember.Local
+            private static void Postfix(BlobGameTennis __instance)
+            {
+                if (!Melon<AccessibilityCore>.Instance.SkipTennis.Value) return;
+                __instance.success = true;
+                __instance.isFinished = true;
+            }
+        }
+
+        /// <summary>
+        /// Harmony patch to skip strength test minigame.
+        /// </summary>
+        [HarmonyPatch(typeof(BlobGameStrengthTest),"Init", new Type[] { typeof(BlobGameSceneLogic) })]
+        private static class StrengthSkip
+        {
+            // ReSharper disable once InconsistentNaming
+            // ReSharper disable once UnusedMember.Local
+            private static void Postfix(BlobGameStrengthTest __instance)
+            {
+                if (!Melon<AccessibilityCore>.Instance.SkipStrength.Value) return;
+                __instance.success = true;
+                __instance.isFinished = true;
+            }
+        }
+
+        /// <summary>
+        /// Harmony patch to skip stacking ring minigame.
+        /// </summary>
+        [HarmonyPatch(typeof(BlobGameStackingRingGame),"Init", new Type[] { typeof(BlobGameSceneLogic) })]
+        private static class StackingRingSkip
+        {
+            // ReSharper disable once InconsistentNaming
+            // ReSharper disable once UnusedMember.Local
+            private static void Postfix(BlobGameStackingRingGame __instance)
+            {
+                if (!Melon<AccessibilityCore>.Instance.SkipRingGame.Value) return;
+                __instance.success = true;
+                __instance.isFinished = true;
+            }
+        }
+
+        /*
+        /// <summary>
+        /// Harmony patch to skip ball maze minigame.
+        /// </summary>
+        [HarmonyPatch(typeof(BlobGameBallMaze),"Init", new Type[] { typeof(BlobGameSceneLogic) })]
+        private static class MazeSkip
+        {
+            // ReSharper disable once InconsistentNaming
+            // ReSharper disable once UnusedMember.Local
+            private static void Postfix(BlobGameBallMaze __instance)
+            {
+                if (!Melon<AccessibilityCore>.Instance.SkipMaze.Value) return;
+                __instance.success = true;
+                __instance.isFinished = true;
+            }
+        }*/
     }
 }
